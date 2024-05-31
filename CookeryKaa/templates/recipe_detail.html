@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/recipe_detail.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ recipe.name }}</h1>
+        <p>{{ recipe.description }}</p>
+        <p><strong>Categories:</strong> {{ recipe.categories }}</p>
+        <p><strong>Preparation Time:</strong> {{ recipe.preparation_time }}</p>
+        <p><strong>Cooking Time:</strong> {{ recipe.cooking_time }}</p>
+
+        {% if recipe.photo %}
+        <div>
+            <h2>Photo:</h2>
+            <img src="{{ recipe.photo.url }}" alt="{{ recipe.name }}">
+        </div>
+        {% endif %}
+
+        {% if recipe.video %}
+        <div>
+            <h2>Video:</h2>
+            <video controls>
+                <source src="{{ recipe.video.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        {% endif %}
+
+        <h2>Ingredients</h2>
+        <ul>
+            {% for ingredient in recipe.ingredients.all %}
+            <li class="ingredient">
+                <span>{{ ingredient.name }}</span>
+                <span>{{ ingredient.quantity }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Directions</h2>
+        <ol>
+            {% for direction in recipe.directions.all %}
+            <li class="direction">
+                <div>{{ direction.step }}</div>
+                {% if direction.photo %}
+                <div>
+                    <img src="{{ direction.photo.url }}" alt="Step {{ forloop.counter }}">
+                </div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+</body>
+</html>

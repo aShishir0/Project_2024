@@ -1,0 +1,159 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Profile Page</title>
+    <link rel="stylesheet" href="{%static 'css/profile.css'%}" />
+  </head>
+  <body>
+    <header id="header">
+      <a href="index.html"><img class="logo" src="{%static 'img/assests/flogo.png'%}" alt="Logo"></a>
+      <div class="search_box">
+        <input type="text" placeholder="I am craving...." />
+        <a href="#"></a>
+      </div>
+      <div class="sidekoelements">
+        <button id="notification-btn" class="hideOnMobile">
+          <ion-icon name="notifications"></ion-icon>
+        </button>
+        <button id="bookmark-btn" class="hideOnMobile">
+          <ion-icon name="bookmark"></ion-icon>
+        </button>
+        <button id="login-btn-popup" class="hideOnMobile">
+          <ion-icon name="person"></ion-icon>
+        </button>
+        <button id="menu">
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+      </div>
+    </header>
+    <nav class="sidebar" id="sidebar">
+      <button id="close-sidebar"><ion-icon name="close"></ion-icon></button>
+      <a href="#">Popular</a>
+      <a href="#">Meals</a>
+      <a href="#">Occasions</a>
+      <a href="#">Cuisines</a>
+      <a href="#">Seasonal</a>
+      <a href="#">Kitchen Wares</a>
+      <a href="#">Contact Us</a>
+      <button id="notification-btn-sb"><ion-icon name="notifications"></ion-icon></button>
+      <button id="bookmark-btn-sb"><ion-icon name="bookmark"></ion-icon></button>
+      <button id="login-btn-popup-sb"><ion-icon name="person"></ion-icon></button>
+    </nav>
+
+    <div class="header__wrapper">
+      <div class="coverimg"></div>
+      <div class="cols__container">
+        <div class="left__col">
+          <div class="img__container">
+            <img src="{%static 'img/profile/profile2.jpg'%}" alt="Anna Smith" />
+          </div>
+          <h2>Anna Smith</h2>
+          <p>UX/UI Designer</p>
+          <p>anna@example.com</p>
+
+          <ul class="about">
+            <li><span>4,073</span> Followers</li>
+            <li><span>322</span> Following</li>
+          </ul>
+
+          <div class="content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam
+              erat volutpat. Morbi imperdiet, mauris ac auctor dictum, nisl
+              ligula egestas nulla.
+            </p>
+
+            <ul>
+              <ion-icon name="logo-twitter"></ion-icon>
+              <ion-icon name="logo-facebook"></ion-icon>
+            </ul>
+          </div>
+        </div>
+        <div class="right__col">
+          <nav>
+            <button onclick="location.href='settings.html'">Edit Profile</button>
+            <button>Manage Contents</button>
+          </nav>
+
+          <div class="post">
+            <!-- Card 1-->
+            <article class="card__article">
+              <img src="{%static 'img/assests/1.jpg'%}" alt="Vancouver Mountains, Canada" class="card__img">
+              <div class="card__data">
+                <h2 class="card__title">Pancake</h2>
+                <span class="card__description"></span>
+                <a href="#" class="card__button">Start Cooking</a>
+              </div>
+            </article>
+        
+            <!-- Card 2 -->
+            <article class="card__article">
+              <img src="{%static 'img/assests/2.jpg'%}" alt="Poon Hill, Nepal" class="card__img">
+              <div class="card__data">
+                <h2 class="card__title">Spaghetti</h2>
+                <span class="card__description"></span>
+                <a href="#" class="card__button">Start Cooking</a>
+              </div>
+            </article>
+        
+            <!-- Card 3 -->
+            <article class="card__article">
+              <img src="{%static 'img/assests/3.jpg'%}" alt="Bojcin Forest, Serbia" class="card__img">
+              <div class="card__data">
+                <h2 class="card__title">Fruits</h2>
+                <span class="card__description"></span>
+                <a href="#" class="card__button">Start Cooking</a>
+              </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="card__article">
+              <img src="{%static 'img/assests/4.jpg'%}" alt="Vancouver Mountains, Canada" class="card__img">
+              <div class="card__data">
+                <h2 class="card__title">Barbecue Sandwich</h2>
+                <span class="card__description"></span>
+                <a href="#" class="card__button">Start Cooking</a>
+              </div>
+            </article>
+        
+            <!-- Card 5 -->
+            <article class="card__article">
+              <img src="{%static 'img/assests/5.jpg'%}" alt="Poon Hill, Nepal" class="card__img">
+              <div class="card__data">
+                <h2 class="card__title">Ham Burger</h2>
+                <span class="card__description"></span>
+                <a href="#" class="card__button">Start Cooking</a>
+              </div>
+            </article>
+        
+              <div class="uploadcontent">
+              <img id ="RecipieLogo"src="{%static 'img/assests/icons8-recipe-50.png'%}" alt="Photo" />
+              <button id = "uploadRecipie"onclick="location.href='Addreceipepage.html'">Add Recipie</button>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <p id ="upperText">Change Profile Photo</p>
+        <div class="modal-options">
+          <button class="option-button" id="upload-photo">Upload Photo</button>
+          <button class="option-button" id="remove-photo">Remove Current Photo</button>
+          <button class="option-button" id="cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Hidden file input element -->
+    <input type="file" id="file-input" style="display: none;">
+    <script src ="{%static 'js/profile.js'%}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+   
+  </body>
+</html>

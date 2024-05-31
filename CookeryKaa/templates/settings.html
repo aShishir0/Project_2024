@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <a href="index.html"><img class="logo" src="images/assests/flogo.png" alt="Logo"></a>          
+            <h2><ion-icon name="cog"></ion-icon>Settings</h2>
+            <ul id="settings-menu">
+                <li class="menu-item active" id="Edit">Edit profile</li>
+                <li class="menu-item"id="changePassword">Change password</li>
+                <li class="menu-item" id ="privacy">Privacy and security</li>
+                <!-- Add other menu items here -->
+            </ul>
+        </div>
+        <div class="content">
+            <form class="editProfile">
+                <div class="form-group flex-container img-group">
+                    <div class="img__container" style="display: block;">
+                        <img src="images/profile/profile2.jpg" alt="Profile Picture">
+                    </div>
+                    <div class="text__container">
+                        <h3>anna__999</h3>
+                        <button id="upload-photo">Change Profile Picture</button>
+                    </div>
+                </div>
+                
+                <div class="form-group flex-container">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" value="Anna Smith">
+                </div>
+                <p>Help people discover your account by using the name you're known by: either your full name, nickname, or business name.
+                    You can only change your name twice within 14 days.
+                </p>
+                <div class="form-group flex-container">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" value="anna__999">
+                </div>
+                <p>In most cases, you'll not be able to change for another 14 days</p>
+                
+                <div class="form-group flex-container">
+                    <label for="bio">Bio</label>
+                    <textarea id="bio" rows="3">What's Up My G?✌️</textarea>
+                </div>
+                <div class="form-group flex-container">
+                    <label for="about">About</label>
+                    <textarea id="about" rows="4">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquamerat volutpat. Morbi imperdiet, mauris ac auctor dictum, nislligula egestas nulla.</textarea>
+                </div>
+                    <h3>Personal Information</h3>
+                    <p>Provide your personal information, even if the account is used for a business, a pet or something else. This won't be a part of your public profile.</p>
+                <div class="form-group flex-container">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="example@gmail.com">
+                </div>
+                <div class="form-group flex-container">
+                    <label for="phone">Phone number</label>
+                    <input type="tel" id="phone" placeholder="Phone number">
+                </div>
+                <div class="form-group flex-container">
+                    <label for="gender">Gender</label>
+                    <select id="gender">
+                        <option value="male" selected>Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="bottombtn">
+                    <button type="submit">Submit</button>
+                    <button type="button" class="deactivate-btn">Temporarily deactivate my account</button>
+                </div>
+                
+            </form>
+            <div class="content">
+                <form class="passwordForm">
+                    <div class="form-group flex-container img-group">
+                        <div class="img__container" style="display: block;">
+                            <img src="images/profile/profile2.jpg" alt="Profile Picture">
+                        </div>
+                        <div class="text__container">
+                            <h3>anna__999</h3>
+                        </div>
+                    </div>
+                    <div class="card-body pb-2">
+                        <div class="form-group flex-container">
+                            <label class="label" for="current-password">Current password</label>
+                            <input type="password" class="password-field" id="current-password">
+                            <ion-icon name="eye-off" class="eye-off"></ion-icon>
+                            <ion-icon name="eye" class="eye"></ion-icon>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label class="label" for="new-password">New password</label>
+                            <input type="password" class="password-field" id="new-password">
+                            <ion-icon name="eye-off" class="eye-off"></ion-icon>
+                            <ion-icon name="eye" class="eye"></ion-icon>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label class="label" for="repeat-password">Repeat new password</label>
+                            <input type="password" class="password-field" id="repeat-password">
+                            <ion-icon name="eye-off" class="eye-off"></ion-icon>
+                            <ion-icon name="eye" class="eye"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="bottombtn">
+                        <button type="submit">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+              
+
+        </div>
+    </div>
+    <input type="file" id="file-input" style="display: none;">
+    <script src="js/settings.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

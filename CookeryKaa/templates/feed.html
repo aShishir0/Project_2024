@@ -1,0 +1,111 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Feed</title>
+    <link rel="stylesheet" href="{%static 'css/feed.css'%}">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>NEWS FEED</h1>
+        <div class="content">
+            <div class="feed">
+                <div class="post">
+                    <div class="post-header">
+                        <div class="photo">
+                            <img src="{%static 'img/assests/logo.png'%}" alt="user profile">
+                        </div>
+                        <div class="user-info">
+                            <span class="username">Dikshit Bhatta</span>
+                            <div class="time">
+                            <span class="clock"></span>
+                            <span class="posttime">2 hrs ago</span>
+                            </div>
+                        </div>
+                        <div class="menu">...
+                            <ul class="dropdown">
+                                <li><a href="#">
+                                    <ion-icon name="bookmark"></ion-icon>
+                                    Save this post
+                                </a></li>
+                                <li><a href="#">
+                                    <ion-icon name="notifications-outline"></ion-icon>
+                                    Turn on notification
+                                </a></li>
+                                <li><a href="#">
+                                    <ion-icon name="person-remove-outline"></ion-icon>
+                                    Unfollow user
+                                </a></li>
+                                <li><a href="#">
+                                    <ion-icon name="trash-bin-outline"></ion-icon>
+                                    Report Recipe
+                                </a></li>
+                                <li><a href="#">
+                                    <ion-icon name="restaurant-outline"></ion-icon>
+                                    Block user
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <img src="{%static 'img/assests/1.jpg'%}" alt="post image" class="post-image">
+                    </div>
+                    <div class="post-interactions">
+                        <div class="reaction">
+                        <button id="love" onclick="react()">
+                            <ion-icon class="heart-fill" name="heart-outline"></ion-icon>
+                        </button>
+                        <span id="reaction_count">0</span>
+                        </div>
+                        <button id="comment">
+                        <img src="{%static 'img/reactions/comment.png'%}">
+                        <!--<input type="text" class="comment" placeholder="Add a comment">-->
+                        </button>
+                        <button id="share">
+                            <img src="{%static 'img/reactions/share.png'%}" alt="">
+                        </button>
+                    </div>
+                    <div class="post-description">
+                        <div class="aba">
+                            <h3>my food</h3>
+                            <div class="rating_section">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div> 
+                        </div>
+                        <div id="ratingValue"></div>
+                        <p>PALM SPRINGS: Cheeky’s is more about creativity than chic</p>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="advertisement">
+                    <input type="file" accept="image/*,video/*">
+                </div>
+                <div class="suggestions">
+                    <h3>Suggested for you</h3>
+                    <div class="suggestion">
+                        <img src="suggested_user.jpg" alt="Suggested Profile" class="profile-pic">
+                    </div>
+                </div>
+                <div class="footer">
+                    <a href="#">About</a> · 
+                    <a href="#">Terms</a> · 
+                    <a href="#">Advertise</a> · 
+                    <a href="#">Privacy</a> · 
+                    <a href="#">Help</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{%static 'js/feed.js'%}"></script>
+</body>
+</html>

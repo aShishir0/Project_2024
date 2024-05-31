@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Recipe</title>
+    <link rel="stylesheet" href="{% static 'css/addrecipe.css' %}">
+</head>
+<body>
+    <h1>Add Recipe</h1>
+    <form method="post" action="{% url 'add_recipe' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="Recipe_title">
+            <input type="text" name="name" placeholder="Recipe">
+        </div>
+        <div class="Recipe_description">
+            <input type="text" name="description" placeholder="Description">
+        </div>
+        <h2 style="text-decoration: underline;">Categories</h2>
+        <div class="categories">
+            <input type="text" name="categories" placeholder="Eg: Occasions, Cuisines, Meals">
+        </div>
+        <div class="media_section">
+            <div class="Food_photo">
+                <div class="upload_box">
+                    <img id="photo-display" alt="Uploaded Photo">
+                </div>
+                <button type="button" id="photo-upload-button">Add Your Food Photo</button>
+                <input type="file" id="photo-upload-input" name="photo" accept="image/*" style="display: none;">
+            </div>
+            <div class="Food_video">
+                <div class="upload_box">
+                    <video id="video-display" controls style="display: none;"></video>
+                </div>
+                <button type="button" id="video-upload-button">Add Your Food Video</button>
+                <input type="file" id="video-upload-input" name="video" accept="video/*" style="display: none;">
+            </div>
+        </div>
+        <h2 style="text-decoration: underline;">Ingredients</h2>
+        <div class="ingredients" id="Ingrediants_container">
+            <h6 style="font-weight: lighter;">Enter your ingredients</h6>
+            <div class="ingredient-box">
+                <div class="ing">
+                    <input type="text" name="ingredient_name[]" placeholder="Ingredient 1">
+                </div>
+                <div class="quan">
+                    <input type="text" name="ingredient_quantity[]" placeholder="Quantity">
+                </div>
+            </div>
+        </div>
+        <h2 style="text-decoration: underline;">Directions</h2>
+        <div class="directions" id="directions-container">
+            <h6 style="font-weight: lighter;">Add direction one step at a time</h6>
+            <div class="dir">
+                <div class="direction_box">
+                    <input type="text" name="direction_step[]" placeholder="Direction 1">
+                </div>
+                <div class="dir_image" onclick="Imageupload(this)">
+                    <img style="display:none;">
+                    <input type="file" name="direction_photo[]" accept="image/*" style="display:none;" onchange="displayImage(event, this)">
+                </div>
+            </div>
+        </div>
+        <div class="time">
+            Preparation Time
+            <input type="text" name="preparation_time">
+            Cooking Time
+            <input type="text" name="cooking_time">
+        </div>
+        <h2 style="text-decoration: underline;">Save this Recipe as:</h2>
+        <div class="saveRecipe">
+            <input type="radio" name="visibility" value="Public"> Public
+            <input type="radio" name="visibility" value="Private"> Private
+        </div>
+        <div class="save_button">
+            <button type="submit">Save</button>
+        </div>
+    </form>
+    <script src="{% static 'js/addrecipe.js' %}"></script>
+</body>
+</html>
