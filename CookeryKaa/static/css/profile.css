@@ -1,36 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
 *{
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-family: 'Comfortaa', sans-serif;
-  scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comfortaa',sans-serif;
+    scroll-behavior: smooth;
 }
 
-body {
-
-  background-color: #7FC8F8; /* Body background color */
-  color: #000; /* Text color */
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F9F9F9;
 }
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-}
-
-a {
-  text-decoration: none;
-}
-
 
 header{
     background-color: #FFE45E;
@@ -133,6 +116,37 @@ header.remove{
     transform-origin: left;
     transform: scaleX(1);
 }
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: max-content;
+    right: 0;
+    background-color: #464343;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.nav_element:hover .dropdown {
+    display: block;
+}
+.dropdown li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+.dropdown li a {
+    text-decoration: none;
+    color: #F9F9F9;
+    padding: 5px 10px;
+    display: block;
+    border-radius: 3px;
+}
+
+.dropdown li a:hover {
+    background-color: #b1abab;
+}
+
 #login-btn-popup,#login-btn-popup-sb{
     width: 50px;
     height: 50px;
@@ -212,87 +226,87 @@ header.remove{
 }
 
 .sidebar{
-  position: fixed;
-  top:0;
-  right: 0;
-  height: 100vh;
-  width: 250px;
-  z-index: 999;
-  background-color: rgba(0,0,0,.5);
-  backdrop-filter:blur(10px);
-  box-shadow: -10px 0 10px rgba(0,0,0,0.5);
-  display: none;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+    position: fixed;
+    top:0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 99999;
+    background-color: rgba(0,0,0,.5);
+    backdrop-filter:blur(10px);
+    box-shadow: -10px 0 10px rgba(0,0,0,0.5);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 .sidebar.active{
-  display: flex;
+    display: flex;
 }
 
 .sidebar a{
-  position: relative;
-  font-size: 1.1em;
-  color: #F9F9F9;
-  text-decoration: none;
-  font-weight: 500;
-  margin-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  justify-content: center;
-  align-items: center;
+    position: relative;
+    font-size: 1.1em;
+    color: #F9F9F9;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .sidebar a::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 100%;
-  height: 3px;
-  background: #F9F9F9;
-  border-radius: 5px;
-  transform: scaleX(0);
-  transition: transform .5s;
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #F9F9F9;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: transform .5s;
 }
 .sidebar a:hover::after{
-  transform-origin: left;
-  transform: scaleX(1);
+    transform-origin: left;
+    transform: scaleX(1);
 }
 #menu{
-  width: 50px;
-  height: 50px;
-  background: transparent;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  font-size: 2em;
-  color: #FF6392;
-  font-weight: 500;
-  margin-left: 20px;
-  margin-right: 20px;
-  transition: .1s;
-  display:none;
-  position: relative;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2em;
+    color: #FF6392;
+    font-weight: 500;
+    margin-left: 20px;
+    margin-right: 20px;
+    transition: .1s;
+    display:none;
+    position: relative;
 }
 #menu:hover{
-  color: #C25278;
+    color: #C25278;
 }
 #close-sidebar{
-  width: 50px;
-  height: 50px;
-  background: transparent;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  font-size: 2em;
-  color: #F9F9F9;
-  font-weight: 500;
-  margin-left:200px;
-  transition: .2s;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2em;
+    color: #F9F9F9;
+    font-weight: 500;
+    margin-left:200px;
+    transition: .2s;
 }
 #close-sidebar:hover{
-  font-size: 2.3em; ;
+    font-size: 2.3em; ;
 }
 
 ul {
@@ -742,6 +756,10 @@ a {
     padding-inline: 1rem;
   }
 }
+
+
+
+
 
 
 
