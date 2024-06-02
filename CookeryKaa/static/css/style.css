@@ -5,6 +5,7 @@
     box-sizing: border-box;
     font-family: 'Comfortaa',sans-serif;
     scroll-behavior: smooth;
+
 }
 
 body{
@@ -12,7 +13,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #F9F9F9;
+    background-color: #7FC8F8 !important;
 }
 
 header{
@@ -112,6 +113,7 @@ header.remove{
     height: 3px;
     background: #000000;
     border-radius: 5px;
+    transform-origin: right;
     transform: scaleX(0);
     transition: transform .5s;
 }
@@ -232,11 +234,11 @@ header.remove{
     position: absolute;
     width: 400px;
     height: 500px;
-    background: rgba(0,0,0,.5);
+    background: rgba(255,255,255,.2);
     border: 2px solid #ffffff80;
     border-radius: 20px;
     backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(255,255,255,0.5);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -299,7 +301,7 @@ header.remove{
     width: 45px;
     height: 45px;
     font-size: 2em;
-    color: #f9f9f9;
+    color: #000;
     display: flex;
     background: transparent;
     border: none;
@@ -316,7 +318,7 @@ header.remove{
 .form-box h2{
     margin-top:10px;
     font-size: 2em;
-    color: #f9f9f9;
+    color: #000;
     text-align: center;
 }
 
@@ -324,7 +326,7 @@ header.remove{
     position: relative;
     width: 100%;
     height: 50px;
-    border-bottom:  2px solid #f9f9f9 ;
+    border-bottom:  2px solid #000 ;
     margin: 30px 0;
     display: flex;
     align-items: center;
@@ -336,7 +338,7 @@ header.remove{
     left: 5px;
     transform: translateY(-50%);
     font-size: 1em;
-    color: #f9f9f9;
+    color: #000;
     font-weight: 500;
     pointer-events: none;
     transition: .5s;
@@ -354,7 +356,7 @@ header.remove{
     border: none;
     outline: none;
     font-size: 1em;
-    color: #f9f9f9;
+    color: #000;
     font-weight: 600;
     padding: 0 35px 0 5px;
 
@@ -364,7 +366,7 @@ header.remove{
     position: absolute;
     right: 8px;
     font-size: 1.2em;
-    color: #f9f9f9;
+    color: #000;
     line-height: 57px;
 
 }
@@ -373,7 +375,7 @@ header.remove{
     cursor: pointer;
     margin-left: 245px;
     margin-right: 0;
-    color: #f9f9f9;
+    color: #000;
     position: absolute;
 }
 
@@ -382,14 +384,14 @@ header.remove{
     cursor: pointer;
     margin-left: 245px;
     margin-right: 40px;
-    color: #f9f9f9;
+    color: #000;
     position: absolute;
     display: none; 
 }
 
 .remember-forget{
     font-size: .9em;
-    color: #f9f9f9;
+    color: #000;
     font-weight: 500;
     margin: -15px 0 15px;
     display: flex;
@@ -397,49 +399,129 @@ header.remove{
 }
 
 .remember-forget label input{
-    accent-color: #f9f9f9;
+    accent-color: #000;
     margin-right: 3px;
 }
 
 .remember-forget a{
-    color: #f9f9f9;
+    color: #000;
     text-decoration: none;
 }
 
 .remember-forget a:hover{
     text-decoration: underline;
 }
-
-.btn{
-    width:100%;
+.button-container-2 {
+    position: relative;
+    width: 100%;
     height: 45px;
-    background-color: #f9f9f9;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    overflow: hidden;
+    border: 1px solid #000;
+    font-weight: 700;
     font-size: 1em;
-    color: #162938;
-    font-weight: 500;
-}
-.btn:hover{
-    border: 3.5px solid transparent;
-    background: linear-gradient(#f9f9f9, #f9f9f9) padding-box,
-    linear-gradient(to right, #E0D2C7, #162938) border-box;
-    border-radius: 6px;
-    transition: all .1s ease;
-}
+    transition: 0.5s;
+    letter-spacing: 3px;
+    border-radius: 8px;
+  }
+  
+  .button-container-2 .mas {
+    position: absolute;
+    color: #000;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    font-size: 1em;
+    letter-spacing: 3px;   
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    font-weight: bold;
+    pointer-events: none;
+    transition: color 0.5s;
+  }
+  
+  .button-container-2 button {
+    width: 100%;
+    height: 100%;
+    font-weight: 700;
+    font-size: 1em;
+    letter-spacing: 3px;
+    background: #000;
+    -webkit-mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png");
+    mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png");
+    -webkit-mask-size: 3000% 100%;
+    mask-size: 3000% 100%;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    -webkit-animation: ani2 0.7s steps(29) forwards;
+    animation: ani2 0.7s steps(29) forwards;
+    transition: background 0.5s, color 0.5s, font-weight 0.5s;
+  }
+  
+  .button-container-2 button:hover {
+    -webkit-animation: ani 0.7s steps(29) forwards;
+    animation: ani 0.7s steps(29) forwards;
+  }
 
+  
+  @-webkit-keyframes ani {
+    from {
+      -webkit-mask-position: 0 0;
+      mask-position: 0 0;
+    }
+    to {
+      -webkit-mask-position: 100% 0;
+      mask-position: 100% 0;
+    }
+  }
+  
+  @keyframes ani {
+    from {
+      -webkit-mask-position: 0 0;
+      mask-position: 0 0;
+    }
+    to {
+      -webkit-mask-position: 100% 0;
+      mask-position: 100% 0;
+    }
+  }
+  
+  @-webkit-keyframes ani2 {
+    from {
+      -webkit-mask-position: 100% 0;
+      mask-position: 100% 0;
+    }
+    to {
+      -webkit-mask-position: 0 0;
+      mask-position: 0 0;
+    }
+  }
+  
+  @keyframes ani2 {
+    from {
+      -webkit-mask-position: 100% 0;
+      mask-position: 100% 0;
+    }
+    to {
+      -webkit-mask-position: 0 0;
+      mask-position: 0 0;
+    }
+  }
 .login-register{
     font-size: .9em;
-    color: #f9f9f9;
+    color: #000;
     text-align: center;
     font-weight: 500;
     margin: 25px 0 10px;
 }
 
 .login-register p a{
-    color: #f9f9f9;
+    color: #000;
     text-decoration: none;
     font-weight: 600;
 }
@@ -450,7 +532,7 @@ header.remove{
  
 .continue-with{
     font-size: .9em;
-    color: #f9f9f9;
+    color: #000;
     text-align: center;
     font-weight: 700;
     margin: 8px 0 10px;
@@ -459,12 +541,12 @@ header.remove{
     width: 50px;
     height: 50px;
     background: transparent;
-    border: 2px solid #f9f9f9;
+    border: 2px solid #000;
     outline: none;
     border-radius: 40px;
     cursor: pointer;
     font-size: 2.5em;
-    color: #f9f9f9;
+    color: #000;
     font-weight: 500;
     margin-top: 10px;
     margin-left:10px;
@@ -478,14 +560,14 @@ header.remove{
 }
 
 .continue-with button:hover{
-    color: #F9F9F9;
-    background-color: #162938;
+    color: #000;
+    background-color: #fff;
 }
 
 .continue-with p{
     font-size: 1.4em;
     font-weight: 600;
-    color: #f9f9f9;
+    color: #000;
     text-align: center;
     font-family: 'Comfortaa',sans-serif;
 } 
@@ -716,7 +798,60 @@ header.remove{
     padding: 4px 32px;
     border-radius: 8px;
 
+}.stories-container .create-story {
+    height: 200px !important;
+    width: 150px !important;
+    flex-shrink: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
 }
+
+.stories-container .create-story-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.stories-container .create-story-content img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.stories-container .create-story-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.stories-container .create-story-btn ion-icon {
+    font-size: 2em;
+    color: #FF6392;
+}
+
+.stories-container .create-story-btn span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FF6392;
+}
+
+.stories-container .create-story img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+
 
 @media (max-width:1230px) {
    .hideOnMobile{

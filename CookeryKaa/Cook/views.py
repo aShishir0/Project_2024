@@ -69,6 +69,9 @@ def addrecipe(request):
 def myprofile(request):
     return render(request,'profile.html')
 
+def bookmark(request):
+    return render(request,'bookmark.html')
+
 def feed(request):
     return render(request,'feed.html')
 

@@ -8,6 +8,7 @@ urlpatterns = [
     # path('signup/',views.handle_signup, name = "handle_signup")
     path('addrecipe/',views.addrecipe, name ='addrecipe'),
     path('myprofile/',views.myprofile,name='profile'),
+    path('bookmark/', views.bookmark, name='bookmark'),
     path('feed/',views.feed,name='feed'),
     path('logout/',views.logout_view, name='logout'),
     path('editprofile/',views.editprofile, name='editprofile'),
