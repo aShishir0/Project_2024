@@ -17,11 +17,13 @@
     <link rel="stylesheet" href="{%static 'css/recipie.css'%}"/>
    
     <link rel="stylesheet" href="{%static 'css/profiledrop.css'%}"/>
+    <link href="{% static 'statics/css/main.7d2c676c.css' %}" rel="stylesheet">
 {% comment %} 
      <iframe name="recipeFrame" id="recipeFrame" src="" frameborder="0"
         width="800px"
         height="530px">
     </iframe>  {% endcomment %}
+    <script defer="defer" src="{% static 'statics/js/main.57a43f9b.js' %}"></script>
 </head>
 <body>
     <header id="header">
@@ -42,7 +44,7 @@
             <div class="nav_element">
                 <a href="#"class="">Popular</a>
                     <ul class="dropdown">
-                        <li><a href="Addreceipepage.html" target="recipeFrame">Add Recipe</a></li>
+                        <li><a href="/CookeryKaa/templates/Addrecipe.html" target="recipeFrame">Add Recipe</a></li>
                         <li><a href="#">Link 2</a></li>
                     </ul>
     
@@ -223,7 +225,7 @@
       <div class="content">
         <div class="prev-btn"><ion-icon name="chevron-back-outline" class="prev-next-btn"></ion-icon></div>
         <div class="story">
-          <img src="{%static 'img/assests/5.jpg'%}" alt="">
+          <img src="{%static 'img/assests/1.jpg'%}" alt="" />
           <div class="author">Author</div>
         </div>
         <div class="next-btn "><ion-icon name="chevron-forward-outline"class="prev-next-btn"></ion-icon></div>
@@ -300,6 +302,8 @@
       <div class="swiper-button-prev swiper-navBtn"></div>
       <div class="swiper-pagination"></div>
     </div>
+    
+  <div id="root"></div>
 
   <div class="action">
       <div id ="profiledropdown" class="menu">
@@ -341,7 +345,8 @@
           </ul>
       </div>
   </div>
-    <script>
+
+  <script>
     function menuToggle(){
         const toggleMenu = document.querySelector('.menu');
         toggleMenu.classList.toggle('active')
@@ -354,6 +359,6 @@
     <script src="{%static 'js/story.js'%}"></script>
      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+    <script src="{% static 'statics/js/main.bundle.js' %}"></script>
 </body>
 </html>
