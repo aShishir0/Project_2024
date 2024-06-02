@@ -15,7 +15,7 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="{%static 'css/swiper-bundle.min.css'%}" />
     <link rel="stylesheet" href="{%static 'css/recipie.css'%}"/>
-    <link rel="stylesheet" href="{%static 'css/style.css'%}"/>
+   
     <link rel="stylesheet" href="{%static 'css/profiledrop.css'%}"/>
 {% comment %} 
      <iframe name="recipeFrame" id="recipeFrame" src="" frameborder="0"
@@ -143,9 +143,9 @@
                 <button type="submit" name ="login" class="btn">Login</button>
                 <div class="continue-with">
                     <p> OR CONTINUE WITH</p>
-                    <button type="button" class="facebook-sign-in" onclick="window.location.href='{% provider_login_url 'facebook' %}'">
+                    <button type="button" class="facebook-sign-in" onclick="window.location.href='{% provider_login_url 'facebook' %}';">
                       <ion-icon name="logo-facebook"class="logo-app"></ion-icon></button>
-                    <button type="button" class="google-sign-in" onclick="window.location.href='{% provider_login_url 'google' %}'">
+                    <button type="button" class="google-sign-in" onclick="window.location.href='{% provider_login_url 'google' %}';">
                       <ion-icon name="logo-google"class="logo-app"></ion-icon></button>
                 </div>
                 <div class="login-register">
@@ -192,9 +192,9 @@
                 </div>
                 <div class="continue-with">
                     <p> OR CONTINUE WITH</p>
-                    <button type ="button" class ="facebook-sign-in" onclick="window.location.href='{% provider_login_url 'facebook' %}' ">
+                    <button type ="button" class ="facebook-sign-in" onclick="window.location.href='{% provider_login_url 'facebook' %}'; ">
                       <ion-icon name="logo-facebook"class="logo-app"></ion-icon></button>
-                    <button type ="button" class ="google-sign-in" onclick="window.location.href='{% provider_login_url 'google' %}' ">
+                    <button type ="button" class ="google-sign-in" onclick="window.location.href='{% provider_login_url 'google' %}'; ">
                         <ion-icon name="logo-google"class="logo-app"></ion-icon></button>
                 </div>
                 <button type="submit" name ="register" class="btn">Register</button>
