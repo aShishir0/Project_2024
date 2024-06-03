@@ -3,6 +3,8 @@
 const coverimg = document.querySelector(".coverimg");
 const pp = document.querySelector(".img__container");
 const modal = document.querySelector(".modal");
+
+
 pp.addEventListener("click", () => {
   modal.classList.add("active");
   const text = document.querySelector("#upperText");
