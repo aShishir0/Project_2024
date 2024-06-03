@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 const stars = document.querySelectorAll('.star');
 const ratingValue = document.getElementById('ratingValue');
+const profilePictureUrl = window.profilePictureUrl;
+
 let currentRating = 0;
 let count = 0;
 
@@ -75,6 +77,7 @@ window.toggleCommentSection = function(button) {
 }
 
 window.handleCommentSubmit = function(button) {
+   console.log("Profile picture URL:", profilePictureUrl); 
    const commentSection = button.closest('.comment-section');
    const commentInput = commentSection.querySelector('.comment-input-field');
    const commentsList = commentSection.querySelector('.comments-list');
@@ -84,7 +87,7 @@ window.handleCommentSubmit = function(button) {
        const commentElement = document.createElement('div');
        commentElement.classList.add('comment');
        commentElement.innerHTML = `
-           <img src="{%static 'img/profile/profile1.jpg'%}" alt="user profile">
+       <img src="${profilePictureUrl}" alt="user profile" class="profile-pic">
            <span class="comment-text">${comment}</span>
        `;
        commentsList.appendChild(commentElement);

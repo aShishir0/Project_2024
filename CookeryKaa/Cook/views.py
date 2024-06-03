@@ -145,6 +145,10 @@ def change_password(request):
     else:
         return render(request,'settings.html')  # Redirect to profile settings page if accessed via GET request
     
+def feed(request):
+    user_profile = get_object_or_404(Profile, user=request.user)
+    return render(request, 'feed.html', {'user_profile': user_profile})
+
 def add_reaction(request):
     if request.method == "POST":
         post_id = request.POST.get('post_id')

@@ -97,6 +97,7 @@
                         <div class="comment_input">
                             <input type="text" placeholder="Add a comment..." class="comment-input-field">
                             <button class="comment-submit" onclick="handleCommentSubmit(this)">Submit</button>
+
                         </div>
                         <div class="comments-list"></div>
                     </div>
@@ -122,6 +123,13 @@
             </div>
         </div>
     </div>
+    <script>
+        
+        const profilePictureUrl = "{{ profile.picture.url }}";
+        console.log('Profile Picture URL:', profilePictureUrl);
+        window.profilePictureUrl = profilePictureUrl;
+    </script>
     <script src="{%static 'js/feed.js'%}"></script>
+    <script src="{%static 'js/ajax.js'%}"></script>
 </body>
 </html>
