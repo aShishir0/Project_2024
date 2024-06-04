@@ -28,7 +28,7 @@ function addComment(postId) {
            document.getElementById('comments_count').innerText = response.comments_count;
            var commentsList = document.getElementById('comments_list');
            commentsList.innerHTML += '<p><strong>' + response.username + ':</strong> ' + response.comment + '</p>';
-           document.getElementById('comment_content').value = '';  // Clear the input field
+           document.getElementById('comment_content').value = '';  
        }
    });
 }
