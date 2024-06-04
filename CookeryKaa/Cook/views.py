@@ -7,6 +7,9 @@ from .forms import UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.hashers import check_password
 from .models import Profile
 from .models import Post, Reaction, Comment, Rating
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404,render
+
 
 # Create your views here.
 def index(request):
@@ -144,11 +147,10 @@ def change_password(request):
         return render(request,'settings.html')
     else:
         return render(request,'settings.html')  # Redirect to profile settings page if accessed via GET request
-    
-def feed(request):
-    user_profile = get_object_or_404(Profile, user=request.user)
-    return render(request, 'feed.html', {'user_profile': user_profile})
 
+
+
+@login_required
 def add_reaction(request):
     if request.method == "POST":
         post_id = request.POST.get('post_id')
@@ -160,7 +162,9 @@ def add_reaction(request):
             reaction.save()
         reaction_count = Reaction.objects.filter(post=post).count()
         return JsonResponse({'reaction_count': reaction_count})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
+@login_required
 def add_comment(request):
     if request.method == "POST":
         post_id = request.POST.get('post_id')
@@ -170,7 +174,9 @@ def add_comment(request):
         comment.save()
         comments_count = Comment.objects.filter(post=post).count()
         return JsonResponse({'comments_count': comments_count, 'comment': comment.content, 'username': comment.user.username})
-    
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+@login_required
 def add_rating(request):
     if request.method == "POST":
         post_id = request.POST.get('post_id')
@@ -182,3 +188,4 @@ def add_rating(request):
             rating.save()
         average_rating = Rating.objects.filter(post=post).aggregate(models.Avg('rating'))['rating__avg']
         return JsonResponse({'average_rating': average_rating})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
