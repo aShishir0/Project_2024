@@ -1,0 +1,185 @@
+{%load %static}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Profile Page</title>
+    <link rel="stylesheet" href="{% static 'css/profiledrop.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+
+  </head>
+  <body>
+    <header id="header">
+        <a href="{% url 'index' %}"><img class="logo" src="{%static 'img/assests/flogo.png'%}" alt="Logo"></a>
+        <div class="search_box">
+          <input type="text" placeholder="I am craving....">
+          <button class = "search-btn"><ion-icon name="search"></ion-icon></button>
+          <a href="#"></a>
+      </div>
+        <div class="sidekoelements">
+          {% if user.is_authenticated %}
+              <button id="notification-btn" class="hideOnMobile"><ion-icon name="notifications"></ion-icon></button>
+              <a href="{% url 'bookmark' %}"><button id="bookmark-btn" class="hideOnMobile"><ion-icon name="bookmark"></ion-icon></button></a>
+              <div class="profile-icon" onclick="menuToggle()" >
+                <img class="img__container" id = "pppp" src="{% if user.profile.picture %}{{ user.profile.picture.url }}{% else %}{% static 'img/profile/default.png' %}{% endif %}" alt="Profile Picture">
+              </div>
+          {% else %}
+              <button id="login-btn-popup" class="hideOnMobile"><ion-icon name="person"></ion-icon></button>
+          {% endif %}
+          <button id="menu"><ion-icon name="menu-outline"></ion-icon></button>
+      </div>
+      </header>
+      <nav class="sidebar" id="sidebar">
+        <button id="close-sidebar"><ion-icon name="close"></ion-icon></button>
+        <a href="#">Popular</a>
+        <a href="#">Meals</a>
+        <a href="#">Occasions</a>
+        <a href="#">Cuisines</a>
+        <a href="#">Seasonal</a>
+        <a href="#">Kitchen Wares</a>
+        <a href="#">Contact Us</a>
+        <button id="notification-btn-sb"><ion-icon name="notifications"></ion-icon></button>
+        <a href="{% url 'bookmark' %}"><button id="bookmark-btn"><ion-icon name="bookmark"></ion-icon></button></a>
+        <button id="login-btn-popup-sb"><ion-icon name="person"></ion-icon></button>
+      </nav>
+
+    <div class="header__wrapper">
+      <div class="cols__container">
+        <div class="left__col">
+          <div class="img__container">
+            <img src="images/profile/profile2.jpg" alt="Anna Smith" />
+          </div>
+          <h2>Anna Smith</h2>
+          <p>UX/UI Designer</p>
+          <p>anna@example.com</p>
+          <button class="button">Follow</button>
+
+          <ul class="about">
+            <li><span>4,073</span> Followers</li>
+            <li><span>322</span> Following</li>
+        </ul>
+        
+
+          <div class="content">
+            <p>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam
+              erat volutpat. Morbi imperdiet, mauris ac auctor dictum, nisl
+              ligula egestas nulla.
+            </p>
+
+            <ul>
+              <ion-icon name="logo-twitter"></ion-icon>
+              <ion-icon name="logo-facebook"></ion-icon>
+            </ul>
+          </div>
+        </div>
+        <div class="right__col">
+            <div class="post">
+                <!-- Card 1-->
+                <article class="card__article">
+                  <img src="{%static 'img/assests/1.jpg'%}" alt="Vancouver Mountains, Canada" class="card__img">
+                  <div class="card__data">
+                    <h2 class="card__title">Pancake</h2>
+                    <span class="card__description"></span>
+                    <a href="{% url 'recipedetail' %}" class="card__button">Start Cooking</a>
+                  </div>
+                </article>
+            
+                <!-- Card 2 -->
+                <article class="card__article">
+                  <img src="{%static 'img/assests/2.jpg'%}" alt="Poon Hill, Nepal" class="card__img">
+                  <div class="card__data">
+                    <h2 class="card__title">Spaghetti</h2>
+                    <span class="card__description"></span>
+                    <a href="#" class="card__button">Start Cooking</a>
+                  </div>
+                </article>
+            
+                <!-- Card 3 -->
+                <article class="card__article">
+                  <img src="{%static 'img/assests/3.jpg'%}" alt="Bojcin Forest, Serbia" class="card__img">
+                  <div class="card__data">
+                    <h2 class="card__title">Fruits</h2>
+                    <span class="card__description"></span>
+                    <a href="#" class="card__button">Start Cooking</a>
+                  </div>
+                </article>
+    
+                <!-- Card 4 -->
+                <article class="card__article">
+                  <img src="{%static 'img/assests/4.jpg'%}" alt="Vancouver Mountains, Canada" class="card__img">
+                  <div class="card__data">
+                    <h2 class="card__title">Barbecue Sandwich</h2>
+                    <span class="card__description"></span>
+                    <a href="#" class="card__button">Start Cooking</a>
+                  </div>
+                </article>
+            
+                <!-- Card 5 -->
+                <article class="card__article">
+                  <img src="{%static 'img/assests/5.jpg'%}" alt="Poon Hill, Nepal" class="card__img">
+                  <div class="card__data">
+                    <h2 class="card__title">Ham Burger</h2>
+                    <span class="card__description"></span>
+                    <a href="#" class="card__button">Start Cooking</a>
+                  </div>
+                </article>       
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <div class="action">
+    <div id ="profiledropdown" class="menu">
+        <h3>
+            User Account
+        </h3>
+        <ul>
+            <li>
+                <ion-icon name="person"></ion-icon>
+                <a href="profile.html">My Profile</a>
+
+            </li>
+            <li>
+                <ion-icon name="pencil"></ion-icon>
+                <a href="settings.html">Edit Profile</a>
+                <span>></span>
+            </li>
+            <li>
+                <ion-icon name="person-add"></ion-icon>
+                <a href="#">Add Account</a>
+                <span>></span>
+            </li>
+            <li>
+                <ion-icon name="people"></ion-icon>
+                <a href="#">Switch Accounts</a>
+                <span>></span>
+            </li>
+            <li>
+                <ion-icon name="cog"></ion-icon>
+                <a href="#">Settings</a>
+                <span>></span>
+                
+            </li>
+            <li>
+                <ion-icon name="log-out"></ion-icon>
+                <a href="#">Logout</a>
+                <span>></span>
+            </li>
+        </ul>
+    </div>
+</div>
+    <script>
+         function menuToggle(){
+             const toggleMenu = document.querySelector('.menu');
+             toggleMenu.classList.toggle('active')
+         }
+    </script>
+    <script src ="{%static 'js/profile.js'%}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+   
+  </body>
+</html>

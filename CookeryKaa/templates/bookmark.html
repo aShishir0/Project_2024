@@ -5,16 +5,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Responsive Profile Page</title>
+    <title>Bookmark</title>
     <link rel="stylesheet" href="{% static 'css/bookmark.css' %}" />
   </head>
   <body>
     <header id="header">
         <a href="{% url 'index' %}"><img class="logo" src="{%static 'img/assests/flogo.png'%}"></a>
         <div class="search_box">
-            <input type="text" placeholder="I am craving....">
-            <a href="#"></a>
-        </div>
+          <input type="text" placeholder="I am craving....">
+          <button class = "search-btn"><ion-icon name="search"></ion-icon></button>
+          <a href="#"></a>
+      </div>
         <div class="sidekoelements">
           {% if user.is_authenticated %}
               <button id="notification-btn" class="hideOnMobile"><ion-icon name="notifications"></ion-icon></button>
