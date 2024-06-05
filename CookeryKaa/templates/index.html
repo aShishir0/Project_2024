@@ -8,6 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
     <title >Cookeryकाँ</title>
     <link rel="icon" type="image/x-icon" href="{%static 'img/assests/logo.png'%}">
   <!-- Swiper CSS -->
@@ -15,6 +17,9 @@
     <link rel="stylesheet" href="{%static 'css/style.css'%}"/>
     <link rel="stylesheet" href="{%static 'css/recipie.css'%}"/>
     <link rel="stylesheet" href="{%static 'css/profiledrop.css'%}"/>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 {% comment %} 
      <iframe name="recipeFrame" id="recipeFrame" src="" frameborder="0"
         width="800px"
@@ -362,10 +367,6 @@
       <div class="swiper-pagination"></div>
     </div>
 
-    <div id="feed">
-      {% include 'templates/feed.html' %}
-    </div>
-
   <div class="action">
       <div id ="profiledropdown" class="menu">
           <h3>
@@ -415,6 +416,10 @@
               </li>
           </ul>
       </div>
+  </div>
+
+  <div id="feed">
+    {% include 'templates/feed.html' %}
   </div>
     <script>
     function menuToggle(){

@@ -186,6 +186,6 @@ def add_rating(request):
         if not created:
             rating.rating = rating_value
             rating.save()
-        average_rating = Rating.objects.filter(post=post).aggregate(models.Avg('rating'))['rating__avg']
+        average_rating = Rating.objects.filter(post=post).aggregate(Rating.Avg('rating'))['rating__avg']
         return JsonResponse({'average_rating': average_rating})
     return JsonResponse({'error': 'Invalid request'}, status=400)

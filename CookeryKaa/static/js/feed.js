@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     const stars = document.querySelectorAll('.star');
     const ratingValue = document.getElementById('ratingValue');
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Calling the AJAX function to update reaction on server
         const postId = loveButton.closest('.post').dataset.postId;
+        console.log("Sending reaction:", postId, 'love');
         addReaction(postId, 'love');
         
     }
@@ -41,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Calling the AJAX function to update rating on server
         const postId = event.target.closest('.post').dataset.postId;
+        console.log("Sending rating:", postId, currentRating);
         addRating(postId, currentRating);
-       
     }
 
     function hoverRating(event) {
@@ -98,13 +100,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const commentElement = document.createElement('div');
             commentElement.classList.add('comment');
             commentElement.innerHTML = `
-                <img src="CookeryKaa/static/img/profile/profile4.jpg" alt="user profile" >
+                <img src="{% static 'img/profile/profile4.jpg' %}" alt="user profile">
                 <span class="comment-text">${comment}</span>
             `;
             commentsList.appendChild(commentElement);
             commentInput.value = '';
 
             // Calling the AJAX function to add comment on server
+            console.log("Sending comment:", postId, comment);
             addComment(postId, comment);
             
         }

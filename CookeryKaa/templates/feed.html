@@ -128,6 +128,7 @@
         const profilePictureUrl = "{{ profile.picture.url }}";
         console.log('Profile Picture URL:', profilePictureUrl);
         window.profilePictureUrl = profilePictureUrl;
+        const csrfToken = '{{ csrf_token }}';
     </script>
     <script src="{%static 'js/feed.js'%}"></script>
     <script src="{%static 'js/ajax.js'%}"></script>
