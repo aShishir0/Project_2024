@@ -1,63 +1,93 @@
-function getCSRFToken() {
-    return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }
+const csrftoken = getCookie('csrftoken');
 
-function addReaction(postId, reactionType) {
+$(document).on('click', '.like-button', function (e) {
+    e.preventDefault();
+    const this_ = $(this);
+    const post_id = this_.attr('data-id');
+    const action = this_.attr('data-action');
     $.ajax({
-        url: "/add_reaction/",
-        type: "POST",
-        data: {
-            'post_id': postId,
-            'reaction_type': reactionType,
-            'csrfmiddlewaretoken': getCSRFToken()
-        },
-        success: function(response) {
-            console.log("Reaction success:", response);
-            document.getElementById('reaction_count').innerText = response.reaction_count;
-        },
-        error: function(xhr, status, error) {
-            console.error("Reaction error:", status, error);
+        url: `/like/${post_id}/`,
+        type: 'POST',
+        headers: { "X-CSRFToken": csrftoken },
+        success: function (response) {
+            if (action === 'like') {
+                this_.attr('data-action', 'unlike');
+                this_.text('Unlike');
+            } else {
+                this_.attr('data-action', 'like');
+                this_.text('Like');
+            }
         }
     });
-}
+});
 
-function addComment(postId, content) {
+$(document).on('submit', '#reaction-form', function (e) {
+    e.preventDefault();
+    const post_id = $('#post_id').val();
+    const reaction_type = $('#reaction_type').val();
     $.ajax({
-        url: "/add_comment/",
-        type: "POST",
+        url: '/addreaction/',
+        type: 'POST',
+        headers: { "X-CSRFToken": csrftoken },
         data: {
-            'post_id': postId,
-            'content': content,
-            'csrfmiddlewaretoken': getCSRFToken()
+            'post_id': post_id,
+            'reaction_type': reaction_type
         },
-        success: function(response) {
-            console.log("Comment success:", response);
-            document.getElementById('comment_count').innerText = response.comments_count;
-            var commentsList = document.getElementById('comments_list');
-            commentsList.innerHTML += '<p><strong>' + response.username + ':</strong> ' + response.comment + '</p>';
-            document.getElementById('comment_content').value = '';
-        },
-        error: function(xhr, status, error) {
-            console.error("Comment error:", status, error);
+        success: function (response) {
+            $('#reaction-count').text(response.reaction_count);
         }
     });
-}
+});
 
-function addRating(postId, ratingValue) {
+$(document).on('submit', '#comment-form', function (e) {
+    e.preventDefault();
+    const post_id = $('#post_id').val();
+    const content = $('#comment_content').val();
     $.ajax({
-        url: "/add_rating/",
-        type: "POST",
+        url: '/addcomment/',
+        type: 'POST',
+        headers: { "X-CSRFToken": csrftoken },
         data: {
-            'post_id': postId,
-            'rating': ratingValue,
-            'csrfmiddlewaretoken': getCSRFToken()
+            'post_id': post_id,
+            'content': content
         },
-        success: function(response) {
-            console.log("Rating success:", response);
-            document.getElementById('average_rating').innerText = response.average_rating.toFixed(1);
-        },
-        error: function(xhr, status, error) {
-            console.error("Rating error:", status, error);
+        success: function (response) {
+            $('#comments-count').text(response.comments_count);
+            $('#comments-list').append(
+                `<li>${response.username}: ${response.comment}</li>`
+            );
         }
     });
-}
+});
+
+$(document).on('submit', '#rating-form', function (e) {
+    e.preventDefault();
+    const post_id = $('#post_id').val();
+    const rating = $('#rating').val();
+    $.ajax({
+        url: '/addrating/',
+        type: 'POST',
+        headers: { "X-CSRFToken": csrftoken },
+        data: {
+            'post_id': post_id,
+            'rating': rating
+        },
+        success: function (response) {
+            $('#average-rating').text(response.average_rating);
+        }
+    });
+});

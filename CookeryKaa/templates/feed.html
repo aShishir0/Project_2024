@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="{%static 'css/feed.css'%}">
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
-
+    <script src="{%static 'js/ajax.js'%}"></script>
+    <script src="{%static 'js/feed.js'%}"></script>
 </head>
 <body>
     <div class="container">
@@ -57,7 +58,7 @@
                     </div>
                     <div class="post-interactions">
                         <div class="reaction">
-                        <button id="love" onclick="react()">
+                        <button id="love"x>
                             <ion-icon class="heart-fill" name="heart-outline"></ion-icon>
                         </button>
                         <span id="reaction_count">0</span>
@@ -130,7 +131,7 @@
         window.profilePictureUrl = profilePictureUrl;
         const csrfToken = '{{ csrf_token }}';
     </script>
-    <script src="{%static 'js/feed.js'%}"></script>
-    <script src="{%static 'js/ajax.js'%}"></script>
+    
+    
 </body>
 </html>
