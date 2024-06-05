@@ -6,14 +6,11 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.hashers import check_password
 from .models import Profile
-<<<<<<< HEAD
-=======
 from .models import Post, Reaction, Comment, Rating
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404,render
 
 
->>>>>>> 4573a576a6f4be48fa8381c05d175402b71ed6e5
 # Create your views here.
 def index(request):
     if request.method == 'POST':
@@ -69,9 +66,8 @@ def handle_login(request):
             messages.error(request,"Username or Password Incorrect")
             return redirect('index')
         
-
 def addrecipe(request):
-    return render(request, 'Addrecipe.html')
+    return render(request,'Addrecipe.html')
 
 def myprofile(request):
     return render(request, 'profile.html')
