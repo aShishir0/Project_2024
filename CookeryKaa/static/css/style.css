@@ -708,13 +708,17 @@ header.remove{
 }
 
 .stories-container {
-    top: 140px;
     position: absolute;
+    top: 145px;
+    left: 90px;
+    width: 70%;
     max-width: 800px;
     margin: 24px auto;
     z-index: 0;
-   
+    column-gap: 100px;
+    margin-right: 30%;
  }
+
  .stories-container .prev-btn,
  .stories-container .next-btn{
     opacity: 0;

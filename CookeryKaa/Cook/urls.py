@@ -7,10 +7,8 @@ urlpatterns = [
     path('addrecipe/', views.addrecipe, name='addrecipe'),
     path('myprofile/', views.myprofile, name='profile'),
     path('bookmark/', views.bookmark, name='bookmark'),
-    path('recipedetail/', views.recipedetail, name='recipedetail'),
-    path('feed/', views.feed, name='feed'),
-    path('logout/', views.logout_view, name='logout'),
-    path('editprofile/', views.editprofile, name='editprofile'),
-    path('change_password/', views.change_password, name='change_password'),
-    path('load_iframe/', views.iframe_view, name='load_iframe'),
+    path('feed/',views.feed,name='feed'),
+    path('logout/',views.logout_view, name='logout'),
+    path('editprofile/',views.editprofile, name='editprofile'),
+    path('change_password/', views.change_password,name='change_password')
 ]

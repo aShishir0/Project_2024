@@ -8,13 +8,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
     <title >Cookeryकाँ</title>
-    <link rel="icon" type="image/x-icon" href="{%static 'img/assets/logo.png'%}">
+    <link rel="icon" type="image/x-icon" href="{%static 'img/assests/logo.png'%}">
   <!-- Swiper CSS -->
     <link rel="stylesheet" href="{%static 'css/swiper-bundle.min.css'%}" />
     <link rel="stylesheet" href="{%static 'css/style.css'%}"/>
     <link rel="stylesheet" href="{%static 'css/recipie.css'%}"/>
     <link rel="stylesheet" href="{%static 'css/profiledrop.css'%}"/>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 {% comment %} 
      <iframe name="recipeFrame" id="recipeFrame" src="" frameborder="0"
         width="800px"
@@ -294,6 +299,7 @@
 
     <div class="container swiper">
       <div class="slide-container">
+        <span class="Recipe_day">Recipes of the day</span>
         <div class="card-wrapper swiper-wrapper">
           <div class="card swiper-slide">
             <div class="image-box">
@@ -369,38 +375,52 @@
           </h3>
           <ul>
               <li>
+                  
                   <ion-icon name="person"></ion-icon>
                   <a href="{% url 'profile' %}">My Profile</a>
-
-              </li>
-              <li>
-                  <ion-icon name="pencil"></ion-icon>
-                  <a href="{% url 'editprofile' %}">Edit Profile</a>
-                  <span>></span>
-              </li>
-              <li>
-                  <ion-icon name="person-add"></ion-icon>
-                  <a href="#">Add Account</a>
-                  <span>></span>
-              </li>
-              <li>
-                  <ion-icon name="people"></ion-icon>
-                  <a href="#">Switch Accounts</a>
-                  <span>></span>
-              </li>
-              <li>
-                  <ion-icon name="cog"></ion-icon>
-                  <a href="#">Settings</a>
-                  <span>></span>
                   
               </li>
               <li>
+                
+                  <ion-icon name="pencil"></ion-icon>
+                  <a href="{% url 'editprofile' %}">Edit Profile</a>
+                  <span>></span>
+                
+              </li>
+              <li>
+                
+                  <ion-icon name="person-add"></ion-icon>
+                  <a href="#">Add Account</a>
+                  <span>></span>
+              
+              </li>
+              <li>
+                
+                  <ion-icon name="people"></ion-icon>
+                  <a href="#">Switch Accounts</a>
+                  <span>></span>
+                
+              </li>
+              <li>
+                
+                  <ion-icon name="cog"></ion-icon>
+                  <a href="#">Settings</a>
+                  <span>></span>
+                
+              </li>
+              <li>
+                
                   <ion-icon name="log-out"></ion-icon>
                   <a href="{% url 'logout' %}">Logout</a>
                   <span>></span>
+                
               </li>
           </ul>
       </div>
+  </div>
+
+  <div id="feed">
+    {% include 'templates/feed.html' %}
   </div>
     <script>
     function menuToggle(){

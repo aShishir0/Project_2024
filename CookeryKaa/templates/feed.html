@@ -62,12 +62,21 @@
                         </button>
                         <span id="reaction_count">0</span>
                         </div>
-                        <button id="comment">
-                        <img src="{%static 'img/reactions/comment.png'%}">
-                        <!--<input type="text" class="comment" placeholder="Add a comment">-->
+                       
+                        <button id="comment" onclick="toggleCommentSection(this)">
+                            <img src="{%static 'img/reactions/comment.png'%}" alt="comment">
                         </button>
+                        <span id="comment_count">0</span>
+                        
                         <button id="share">
                             <img src="{%static 'img/reactions/share.png'%}" alt="">
+                            <ul class="sharedown">
+                                <li><a href="#"><ion-icon name="create-outline"></ion-icon>Share to feed</a></li>
+                                <li><a href="#"><ion-icon name="duplicate-outline"></ion-icon>Share to your story</a></li>
+                                <li><a href="#"><ion-icon name="logo-facebook"></ion-icon>Share in facebook</a></li>
+                                <li><a href="#"><ion-icon name="logo-instagram"></ion-icon>Share in instagram</a></li>
+                                <li><a href="#"><ion-icon name="copy-outline"></ion-icon>Copy link</a></li>
+                              </ul>
                         </button>
                     </div>
                     <div class="post-description">
@@ -83,6 +92,14 @@
                         </div>
                         <div id="ratingValue"></div>
                         <p>PALM SPRINGS: Cheeky’s is more about creativity than chic</p>
+                    </div>
+                    <div class="comment-section" style="display: none;">
+                        <div class="comment_input">
+                            <input type="text" placeholder="Add a comment..." class="comment-input-field">
+                            <button class="comment-submit" onclick="handleCommentSubmit(this)">Submit</button>
+
+                        </div>
+                        <div class="comments-list"></div>
                     </div>
                 </div>
             </div>
@@ -106,6 +123,14 @@
             </div>
         </div>
     </div>
+    <script>
+        
+        const profilePictureUrl = "{{ profile.picture.url }}";
+        console.log('Profile Picture URL:', profilePictureUrl);
+        window.profilePictureUrl = profilePictureUrl;
+        const csrfToken = '{{ csrf_token }}';
+    </script>
     <script src="{%static 'js/feed.js'%}"></script>
+    <script src="{%static 'js/ajax.js'%}"></script>
 </body>
 </html>

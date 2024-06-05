@@ -6,6 +6,14 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.hashers import check_password
 from .models import Profile
+<<<<<<< HEAD
+=======
+from .models import Post, Reaction, Comment, Rating
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404,render
+
+
+>>>>>>> 4573a576a6f4be48fa8381c05d175402b71ed6e5
 # Create your views here.
 def index(request):
     if request.method == 'POST':
@@ -148,3 +156,45 @@ def change_password(request):
         return render(request,'settings.html')
     else:
         return render(request,'settings.html')  # Redirect to profile settings page if accessed via GET request
+
+
+
+@login_required
+def add_reaction(request):
+    if request.method == "POST":
+        post_id = request.POST.get('post_id')
+        reaction_type = request.POST.get('reaction_type')
+        post = get_object_or_404(Post, id=post_id)
+        reaction, created = Reaction.objects.get_or_create(post=post, user=request.user, defaults={'reaction_type': reaction_type})
+        if not created:
+            reaction.reaction_type = reaction_type
+            reaction.save()
+        reaction_count = Reaction.objects.filter(post=post).count()
+        return JsonResponse({'reaction_count': reaction_count})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+@login_required
+def add_comment(request):
+    if request.method == "POST":
+        post_id = request.POST.get('post_id')
+        content = request.POST.get('content')
+        post = get_object_or_404(Post, id=post_id)
+        comment = Comment.objects.create(post=post, user=request.user, content=content)
+        comment.save()
+        comments_count = Comment.objects.filter(post=post).count()
+        return JsonResponse({'comments_count': comments_count, 'comment': comment.content, 'username': comment.user.username})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+@login_required
+def add_rating(request):
+    if request.method == "POST":
+        post_id = request.POST.get('post_id')
+        rating_value = int(request.POST.get('rating'))
+        post = get_object_or_404(Post, id=post_id)
+        rating, created = Rating.objects.get_or_create(post=post, user=request.user, defaults={'rating': rating_value})
+        if not created:
+            rating.rating = rating_value
+            rating.save()
+        average_rating = Rating.objects.filter(post=post).aggregate(Rating.Avg('rating'))['rating__avg']
+        return JsonResponse({'average_rating': average_rating})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
