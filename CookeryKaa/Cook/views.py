@@ -65,18 +65,23 @@ def handle_login(request):
             messages.error(request,"Username or Password Incorrect")
             return redirect('index')
         
-
 def addrecipe(request):
     return render(request,'Addrecipe.html')
 
 def myprofile(request):
-    return render(request,'profile.html')
+    return render(request, 'profile.html')
+
+def recipedetail(request):
+    return render(request, 'recipedetail.html')
 
 def bookmark(request):
-    return render(request,'bookmark.html')
+    return render(request, 'bookmark.html')
 
 def feed(request):
-    return render(request,'feed.html')
+    return render(request, 'feed.html')
+
+def iframe_view(request):
+    return render(request, 'Addrecipe.html')
 
 def logout_view(request):
     logout(request)

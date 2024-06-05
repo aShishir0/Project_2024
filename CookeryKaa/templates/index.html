@@ -31,6 +31,7 @@
         <a href="#"><img class="logo" src="{%static 'img/assests/flogo.png'%}"></a>
         <div class="search_box">
             <input type="text" placeholder="I am craving....">
+            <button class = "search-btn"><ion-icon name="search"></ion-icon></button>
             <a href="#"></a>
         </div>
         <div class="sidekoelements">
@@ -77,15 +78,15 @@
             <div class="nav_element">    
                 <a href="#"class="">Cusines</a>
                 <ul class="dropdown">
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Cusine 1</a></li>
+                    <li><a href="#">Cusine 2</a></li>
                 </ul>
             </div>
             <div class="nav_element">
                 <a href="#"class="">Seasonal</a>
                 <ul class="dropdown">
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Seasonal 1</a></li>
+                    <li><a href="#">Seasonal 2</a></li>
                 </ul>
             </div>
             <div class="nav_element">
@@ -110,7 +111,7 @@
             <a href="#">Kitchen Wares</a>
             <a href="#">Contact Us</a>
             <button id="notification-btn-sb"><ion-icon name="notifications"></ion-icon></button>
-            <button id="bookmark-btn-sb"><ion-icon name="bookmark"></ion-icon></button>
+            <a href="{% url 'bookmark' %}"><button id="bookmark-btn"><ion-icon name="bookmark"></ion-icon></button></a>
             <button id="login-btn-popup-sb"><ion-icon name="person"></ion-icon></button>
         </nav>
     <div class="wrapper">
@@ -229,7 +230,7 @@
           <div class="stories">
               <div class="create-story" id="create-story">
                   <div class="create-story-content">
-                      <img id="profile-picture" src="{% static 'img/profile/profile2.jpg' %}" alt="Profile Picture">
+                      <img id="profile-picture" src="{{ user.profile.picture.url }}" alt="Profile Picture">
                       <div class="create-story-btn">
                           <ion-icon name="add-circle-outline" class="create-icon"></ion-icon>
                           <span>Create story</span>

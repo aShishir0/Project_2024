@@ -9,7 +9,24 @@
 
     <link rel="stylesheet" href="{% static 'css/profiledrop.css' %}" />
     <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
-
+    <style>
+      iframe {
+          aspect-ratio: 16/9;
+          width: 70%;
+          height: 80%;
+          transform: scale(0);
+          transition: transform 0.4s ease-in-out;
+          position: fixed;
+          border: solid 1px black;
+          border-radius: 20px;
+          top: 15%;
+          left: 17%;
+          z-index: 1000;
+      }
+      iframe.active {
+          transform: scale(1);
+      }
+  </style>
     <style>
       #pppp {
         width: 50px;
@@ -31,16 +48,18 @@
     </style>
   </head>
   <body>
+    <iframe id="recipeIframe" src="http://localhost:8000/addrecipe/" frameborder="0"></iframe>    
     <header id="header">
       <a href="{% url 'index' %}"><img class="logo" src="{%static 'img/assests/flogo.png'%}" alt="Logo"></a>
       <div class="search_box">
-        <input type="text" placeholder="I am craving...." />
+        <input type="text" placeholder="I am craving....">
+        <button class = "search-btn"><ion-icon name="search"></ion-icon></button>
         <a href="#"></a>
-      </div>
+    </div>
       <div class="sidekoelements">
         {% if user.is_authenticated %}
             <button id="notification-btn" class="hideOnMobile"><ion-icon name="notifications"></ion-icon></button>
-            <button id="bookmark-btn" class="hideOnMobile"><ion-icon name="bookmark"></ion-icon></button>
+            <a href="{% url 'bookmark' %}"><button id="bookmark-btn" class="hideOnMobile"><ion-icon name="bookmark"></ion-icon></button></a>
             <div class="profile-icon" onclick="menuToggle()" >
               <img class="img__container" id = "pppp" src="{% if user.profile.picture %}{{ user.profile.picture.url }}{% else %}{% static 'img/profile/default.png' %}{% endif %}" alt="Profile Picture">
             </div>
@@ -60,7 +79,7 @@
       <a href="#">Kitchen Wares</a>
       <a href="#">Contact Us</a>
       <button id="notification-btn-sb"><ion-icon name="notifications"></ion-icon></button>
-      <button id="bookmark-btn-sb"><ion-icon name="bookmark"></ion-icon></button>
+      <a href="{% url 'bookmark' %}"><button id="bookmark-btn"><ion-icon name="bookmark"></ion-icon></button></a>
       <button id="login-btn-popup-sb"><ion-icon name="person"></ion-icon></button>
     </nav>
 
@@ -92,8 +111,7 @@
         </div>
         <div class="right__col">
           <nav>
-           <button onclick="location.href='{% url 'editprofile' %}'">Edit Profile</button>
-
+            <a href="{% url 'editprofile' %}"></a><button>Edit Profile</button>
             <button>Manage Contents</button>
           </nav>
 
@@ -104,7 +122,7 @@
               <div class="card__data">
                 <h2 class="card__title">Pancake</h2>
                 <span class="card__description"></span>
-                <a href="#" class="card__button">Start Cooking</a>
+                <a href="{% url 'recipedetail' %}" class="card__button">Start Cooking</a>
               </div>
             </article>
         
@@ -150,7 +168,7 @@
         
               <div class="uploadcontent">
               <img id ="RecipieLogo"src="{%static 'img/assests/icons8-recipe-50.png'%}" alt="Photo" />
-              <button id = "uploadRecipie"onclick="location.href='{% url 'addrecipe' %}'">Add Recipie</button>
+              <button id="uploadRecipe" type="button">Add Recipe</button>
             </div>            
           </div>
         </div>
@@ -198,15 +216,17 @@
       </div>
   </div>
     <script>
-    function menuToggle(){
+          function menuToggle(){
         const toggleMenu = document.querySelector('.menu');
         toggleMenu.classList.toggle('active')
     }
   </script>
+
+
     
     <!-- Hidden file input element -->
     <input type="file" id="file-input" style="display: none;">
-    <script src ="{%static 'js/profile.js'%}"></script>
+        <script src ="{%static 'js/profile.js'%}"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
    
