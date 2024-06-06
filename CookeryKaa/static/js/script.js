@@ -59,13 +59,18 @@ loginForm.addEventListener('submit', function(event) {
   event.preventDefault(); 
 
   const formData = new FormData(loginForm);
+  
   fetch('/login/', { 
+    method:'POST',
     body: formData
   })
   .then(response => {
     if (response.ok) {
       window.location.href = '/'; 
+    }
+    else {
       errorMsg.style.display = 'block'; 
+    }
   })
   .catch(error => {
     console.error('Error:', error);
@@ -107,6 +112,15 @@ registerLink.addEventListener('click', () => {
 
 loginLink.addEventListener('click', () => {
   wrapper.classList.remove('active');
+});
+
+btnPopUpSb.addEventListener("click",()=>{
+  wrapper.classList.add("active-popup")
+  sidebar.classList.remove("active")
+})
+
+iconClose.addEventListener('click', function(){
+  wrapper.classList.remove('active-popup');
 });
 
 loginBtnPopup.addEventListener('click', () => {

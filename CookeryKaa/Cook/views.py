@@ -51,12 +51,12 @@ def handle_register(request):
 
 
 def handle_login(request):
-    if request.method =="POST":
+    if request.method == "POST":
         email = request.POST.get('email')
-        pass1 = request.POST.get('password')
-        user = authenticate(request,email=email,password=pass1)
+        password = request.POST.get('password') 
+        user = authenticate(request, email=email, password=password)
         if user is not None:
-            login(request,user)
+            login(request, user)
             return JsonResponse({'success': True})
         else:
             return JsonResponse({'success': False}, status=400)
