@@ -7,7 +7,7 @@ from .forms import UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.hashers import check_password
 from .models import Profile
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404,render
+from django.shortcuts import get_object_or_404, render
 
 
 # Create your views here.
@@ -17,7 +17,6 @@ def index(request):
             return handle_register(request)
         elif 'login' in request.POST:
             return handle_login(request)
-        # Add an else block to handle any other POST request
         else:
             messages.error(request, "Invalid request")
             return redirect('index')
@@ -36,18 +35,18 @@ def handle_register(request):
             return redirect('index')
         
         if User.objects.filter(username=uname).exists():
-            messages.error(request,"Username already taken")
+            messages.error(request, "Username already taken")
             return redirect('index')
         
         if User.objects.filter(email=email).exists():
             messages.error(request, "Email already used")
             return redirect('index')
         
-        my_user = User.objects.create_user(uname,email,pass1)
+        my_user = User.objects.create_user(uname, email, pass1)
         my_user.save()
-        #Creating a profile object
+        # Creating a profile object
         Profile.objects.create(user=my_user)
-        messages.success(request,"User Created Successfuly")
+        messages.success(request, "User Created Successfully")
         return redirect('index')
 
 
@@ -58,35 +57,40 @@ def handle_login(request):
         user = authenticate(request,email=email,password=pass1)
         if user is not None:
             login(request,user)
-            return redirect('index')
-            #return redirect('index')
+            return JsonResponse({'success': True})
         else:
-            #return HttpResponse("Username or password incorrect")
-            messages.error(request,"Username or Password Incorrect")
-            return redirect('index')
-        
+            return JsonResponse({'success': False}, status=400)
+
+
 def addrecipe(request):
-    return render(request,'Addrecipe.html')
+    return render(request, 'Addrecipe.html')
+
 
 def myprofile(request):
     return render(request, 'profile.html')
 
+
 def recipedetail(request):
     return render(request, 'recipedetail.html')
+
 
 def bookmark(request):
     return render(request, 'bookmark.html')
 
+
 def feed(request):
     return render(request, 'feed.html')
 
+
 def iframe_view(request):
     return render(request, 'Addrecipe.html')
+
 
 def logout_view(request):
     logout(request)
     # Redirect to a specific page after logout
     return redirect('index')
+
 
 @login_required
 def editprofile(request):
@@ -117,12 +121,13 @@ def editprofile(request):
         profile.save()
 
         messages.success(request, 'Your profile was successfully updated!')
-        return render(request,'profile.html')
+        return render(request, 'profile.html')
 
     return render(request, 'settings.html', {
         'user': user,
         'profile': profile
     })
+
 
 @login_required
 def change_password(request):
@@ -151,5 +156,3 @@ def change_password(request):
         return render(request,'settings.html')
     else:
         return render(request,'settings.html')  # Redirect to profile settings page if accessed via GET request
-
-

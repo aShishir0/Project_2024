@@ -228,6 +228,13 @@ header.remove{
     background: #F9F9F9;
     color: #C25278;
 }
+
+#error-msg {
+    display: block;
+    color: red;
+    margin-bottom: 10px; 
+}
+
 #notification-btn,
 #notification-btn-sb{
     width: 50px;

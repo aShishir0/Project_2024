@@ -32,9 +32,12 @@ var swiper = new Swiper(".slide-container", {
     },
   },
 });
+
+
+
 const wrapper = document.querySelector('.wrapper');
 const loginBtnPopup = document.querySelector('#login-btn-popup');
-const navbar = document.getElementById('navbar');               
+const navbar = document.getElementById('navbar');
 const loginLink = document.querySelector('.login-link');
 const registerLink = document.querySelector('.register-link');
 const btnPopUpSb = document.querySelector('#login-btn-popup-sb');
@@ -43,82 +46,84 @@ const searchBox = document.querySelector('.search-box');
 const searchBtn = document.querySelector('.search-btn');
 const search = document.querySelector('.search');
 const closeBtn = document.querySelector('.close-btn');
-
-const sidebar=document.getElementById('sidebar');
-const menuBtn=document.getElementById('menu');
+const sidebar = document.getElementById('sidebar');
+const menuBtn = document.getElementById('menu');
 const closeSideBarBtn = document.getElementById('close-sidebar');
 const passwordFields = document.querySelectorAll('.password-field');
 const eyeOffIcons = document.querySelectorAll('.eye-off');
 const eyeIcons = document.querySelectorAll('.eye');
+const loginForm = document.getElementById('login-form');
+const errorMsg = document.getElementById('error-msg');
 
+loginForm.addEventListener('submit', function(event) {
+  event.preventDefault(); 
+
+  const formData = new FormData(loginForm);
+  fetch('/login/', { 
+    body: formData
+  })
+  .then(response => {
+    if (response.ok) {
+      window.location.href = '/'; 
+      errorMsg.style.display = 'block'; 
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+});
 
 eyeOffIcons.forEach((eyeOffIcon, index) => {
   eyeOffIcon.addEventListener('click', () => {
-    const passwordField = passwordFields[index];
-    const eyeIcon = eyeIcons[index];
-
-
-    if (passwordField.type === "password") {
-      passwordField.type = "text";
-      eyeOffIcon.style.display = "none";
-      eyeIcon.style.display = "block";
-    } else {
-      passwordField.type = "password";
-      eyeOffIcon.style.display = "block";
-      eyeIcon.style.display = "none";
-    }
+    togglePasswordVisibility(index);
   });
 });
 
 eyeIcons.forEach((eyeIcon, index) => {
   eyeIcon.addEventListener('click', () => {
-    const passwordField = passwordFields[index];
-    const eyeOffIcon = eyeOffIcons[index];
-
-    if (passwordField.type === "password") {
-      passwordField.type = "text";
-      eyeOffIcon.style.display = "none";
-      eyeIcon.style.display = "block";
-    } else {
-      passwordField.type = "password";
-      eyeOffIcon.style.display = "block";
-      eyeIcon.style.display = "none";
-    }
+    togglePasswordVisibility(index);
   });
 });
 
+function togglePasswordVisibility(index) {
+  const passwordField = passwordFields[index];
+  const eyeOffIcon = eyeOffIcons[index];
+  const eyeIcon = eyeIcons[index];
 
-registerLink.addEventListener("click",()=>{
-    wrapper.classList.add("active");
+  if (passwordField.type === 'password') {
+    passwordField.type = 'text';
+    eyeOffIcon.style.display = 'none';
+    eyeIcon.style.display = 'block';
+  } else {
+    passwordField.type = 'password';
+    eyeOffIcon.style.display = 'block';
+    eyeIcon.style.display = 'none';
+  }
+}
+
+
+registerLink.addEventListener('click', () => {
+  wrapper.classList.add('active');
 });
 
-loginLink.addEventListener("click",()=>{
-    wrapper.classList.remove("active");
+loginLink.addEventListener('click', () => {
+  wrapper.classList.remove('active');
 });
 
-
-btnPopUpSb.addEventListener("click",()=>{
-  wrapper.classList.add("active-popup")
-  sidebar.classList.remove("active")
-})
-iconClose.addEventListener('click', function(){
-  wrapper.classList.remove('active-popup');
-});
-
-loginBtnPopup.addEventListener('click', function() {
+loginBtnPopup.addEventListener('click', () => {
   wrapper.classList.add('active-popup');
-  navbar.classList.add('hidden')
+  navbar.classList.add('hidden');
   document.body.appendChild(wrapper);
 });
 
-iconClose.addEventListener('click', function() {
+iconClose.addEventListener('click', () => {
   wrapper.classList.remove('active-popup');
-  navbar.classList.remove('hidden')
+  navbar.classList.remove('hidden');
 });
 
-menuBtn.addEventListener("click",()=>{
-  sidebar.classList.add("active")
-})
-closeSideBarBtn.addEventListener("click",()=>{
-  sidebar.classList.remove("active")
-})
+menuBtn.addEventListener('click', () => {
+  sidebar.classList.add('active');
+});
+
+closeSideBarBtn.addEventListener('click', () => {
+  sidebar.classList.remove('active');
+});
