@@ -1,8 +1,26 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const uploadRecipeButton = document.getElementById('uploadRecipe');
+  const recipeIframe = document.getElementById('recipeIframe');
 
+  uploadRecipeButton.addEventListener('click', function () {
+      recipeIframe.classList.add("active");
+  });
+
+  document.addEventListener('click', function (event) {
+      const isClickInsideIframe = recipeIframe.contains(event.target);
+      const isClickOnButton = uploadRecipeButton.contains(event.target);
+
+      if (!isClickInsideIframe && !isClickOnButton && recipeIframe.classList.contains('active')) {
+          recipeIframe.classList.remove('active');
+      }
+  });
+});
 // modal section open garney when clicked on the pp and coverimg
 const coverimg = document.querySelector(".coverimg");
 const pp = document.querySelector(".img__container");
 const modal = document.querySelector(".modal");
+
+
 pp.addEventListener("click", () => {
   modal.classList.add("active");
   const text = document.querySelector("#upperText");

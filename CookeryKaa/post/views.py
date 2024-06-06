@@ -5,6 +5,8 @@ from .models import Recipe, Ingredient, Direction, Likes
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .models import Post, Reaction, Comment, Rating
+from django.http import JsonResponse
+
 
 @login_required
 def add_recipe(request):
@@ -63,7 +65,7 @@ def like(request, post_id):
         Likes.objects.filter(user=user, recipe=post).delete()
     return HttpResponseRedirect(reverse('recipe_detail', args=[post_id]))
 
-def add_reaction(request):
+def addReaction(request):
     if request.method == 'POST':
         post_id = request.POST.get('post_id')
         reaction_type = request.POST.get('reaction_type')
@@ -75,8 +77,9 @@ def add_reaction(request):
             'reaction_count': post.reactions.count()
         }
         return JsonResponse(response)
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
-def add_comment(request):
+def addComment(request):
     if request.method == 'POST':
         post_id = request.POST.get('post_id')
         content = request.POST.get('content')
@@ -90,7 +93,7 @@ def add_comment(request):
         }
         return JsonResponse(response)
 
-def add_rating(request):
+def addRating(request):
     if request.method == 'POST':
         post_id = request.POST.get('post_id')
         rating = int(request.POST.get('rating'))

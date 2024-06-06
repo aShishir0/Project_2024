@@ -1,3 +1,20 @@
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {  // Corrected loop condition
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const csrftoken = getCookie('csrftoken');
+
 document.addEventListener('DOMContentLoaded', function() {
     const stars = document.querySelectorAll('.star');
     const ratingValue = document.getElementById('ratingValue');
@@ -5,7 +22,61 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentRating = 0;
     let count = parseInt(document.getElementById('reaction_count').textContent, 10) || 0;
 
-    
+    // Example in jQuery
+function addReaction(data) {
+    $.ajax({
+        url: 'http://127.0.0.1:8000/addReaction/',
+        type: 'POST',
+        data: data,
+        success: function(response) {
+            console.log('Success:', response);
+        },
+        error: function(xhr, status, error) {
+            console.log('Error:', error);
+        }
+    });
+}
+
+
+    function addComment(postId, content) {
+        $.ajax({
+            url: '/addComment/',
+            type: 'POST',
+            headers: { "X-CSRFToken": csrftoken },
+            data: {
+                'post_id': postId,
+                'content': content
+            },
+            success: function (response) {
+                $('#comments-count').text(response.comments_count);
+                $('#comments-list').append(
+                    `<li>${response.username}: ${response.comment}</li>`
+                );
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    function addRating(postId, rating) {
+        $.ajax({
+            url: '/addRating/',
+            type: 'POST',
+            headers: { "X-CSRFToken": csrftoken },
+            data: {
+                'post_id': postId,
+                'rating': rating
+            },
+            success: function (response) {
+                $('#average-rating').text(response.average_rating);
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
     function react() {
         const loveButton = document.getElementById('love');
         const heartIcon = loveButton.querySelector('.heart-fill'); 
@@ -25,9 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const postId = loveButton.closest('.post').dataset.postId;
         addReaction(postId, 'love');
     }
+
     const loveButton = document.getElementById('love');
     loveButton.addEventListener('click', react);
-
 
     stars.forEach(star => {
         star.addEventListener('click', setRating);
@@ -62,8 +133,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    document.getElementById('love').addEventListener('click', react);
 
     document.querySelectorAll('.sharedown').forEach(shareButton => {
         shareButton.addEventListener('click', function() {

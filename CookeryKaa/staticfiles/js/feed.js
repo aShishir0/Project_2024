@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentRating = 0;
     let count = parseInt(document.getElementById('reaction_count').textContent, 10) || 0;
 
+    
     function react() {
         const loveButton = document.getElementById('love');
         const heartIcon = loveButton.querySelector('.heart-fill'); 
@@ -24,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const postId = loveButton.closest('.post').dataset.postId;
         addReaction(postId, 'love');
     }
+    const loveButton = document.getElementById('love');
+    loveButton.addEventListener('click', react);
+
 
     stars.forEach(star => {
         star.addEventListener('click', setRating);
